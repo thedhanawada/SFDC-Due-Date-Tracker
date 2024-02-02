@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="recordDue">
+    <apiVersion>59.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="fieldToCompare" type="String" label="Field to Compare" 
+                      description="API name of the field to compare (e.g., 'startDate'). This field represents the due date."/>
+            <property name="comparisonDateField" type="String" label="Comparison Date Field" 
+                      description="API name of the comparison date field (e.g., 'endDate'). This field represents the date to compare against the due date."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
