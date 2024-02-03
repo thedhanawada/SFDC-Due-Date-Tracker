@@ -1,27 +1,26 @@
-# Due Date Tracker
+# Due Date Tracker LWC
 
-The Due Date Tracker is a Salesforce Lightning Web Component (LWC) designed to display the status of a due date on a record page. It calculates the difference between a specified start date and end date, and presents whether the due date is upcoming or has been breached.
+The Due Date Tracker is a Salesforce Lightning Web Component (LWC) that displays due date information on record pages.
 
 ![screenshot](https://github.com/thedhanawada/SFDC-Due-Date-Tracker/assets/13751641/f65491b7-4e5b-478e-8805-138abf762670)
 
 ## Features
 
-- Dynamically fetches record data using an Apex class.
-- Calculates the days remaining until the due date or the days past the due date.
-- Displays a message indicating the due date status.
-- Applies conditional styling based on whether the due date is upcoming or breached.
+- Fetches record data dynamically using an Apex class.
+- Calculates days remaining until the due date or days past the due date.
+- Displays status messages with conditional styling.
 
 ## Installation
 
-Deploy the LWC and the associated Apex class to your Salesforce org using your preferred deployment method. TBC.
+1. Deploy the LWC and associated Apex class to your Salesforce org.
 
 ## Configuration
 
-After deployment, the component can be dragged onto any record page in the Lightning App Builder. The following properties need to be set in the component's configuration:
-
-- **Object Name**: API name of the Salesforce object.
-- **Field to Compare**: API name of the start date field on the object.
-- **Comparison Date Field**: API name of the end date field on the object.
+1. Drag and drop the component onto any record page in Lightning App Builder.
+2. Configure the following properties:
+   - **Object Name**: API name of the Salesforce object.
+   - **Field to Compare**: API name of the start date field.
+   - **Comparison Date Field**: API name of the end date field.
 
 Example:
 - Object Name: `Campaign`
@@ -30,23 +29,28 @@ Example:
 
 ## Usage
 
-Once configured, the component will display on the record page with a message such as "5 days remaining until end date" or "3 days past the end date" based on the logic defined in the component's JavaScript.
+- The component will display on the record page, showing status messages based on due date logic.
 
 ## Styling
 
-The component uses standard SLDS classes and custom CSS for styling. The appearance can be customized by modifying the `.css` file in the LWC bundle.
+- Customize appearance using standard SLDS classes and custom CSS in the `.css` file.
 
 ## Component Files
 
-- **recordDue.js**: The main JavaScript controller for the LWC.
-- **recordDue.html**: The HTML template for the LWC.
-- **recordDue.css**: The styles for the LWC.
-- **recordDue.xml**: The metadata configuration file for the LWC.
+- **recordDue.js**: JavaScript controller.
+- **recordDue.html**: HTML template.
+- **recordDue.css**: Custom styles.
+- **recordDue.xml**: Metadata configuration.
 
 ## Apex Class
 
-The `RecordDataService` Apex class is used to fetch the data for the component.
+- The `RecordDataService` Apex class fetches data for the component.
+
+## Test Classes
+
+- Test classes are available for the `RecordDataService` Apex class.
+- Double-check test coverage during deployment.
 
 ## Notes
 
-- Ensure that the field API names used in the component configuration match those in your Salesforce org, including correct casing.
+- Ensure field API names in the component configuration match your Salesforce org.
