@@ -48,4 +48,3 @@ The `RecordDataService` Apex class is used to fetch the data for the component.
 ## Notes
 
 - Ensure that the field API names used in the component configuration match those in your Salesforce org, including correct casing.
-- This component assumes that the record page where it's placed provides the `recordId` context.
