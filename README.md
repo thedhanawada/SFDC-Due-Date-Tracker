@@ -4,6 +4,8 @@ The Due Date Tracker is a Salesforce Lightning Web Component (LWC) that displays
 
 ![screenshot](https://github.com/thedhanawada/SFDC-Due-Date-Tracker/assets/13751641/f65491b7-4e5b-478e-8805-138abf762670)
 
+Screenshot created with ❤️ using [SuperbShot](https://superbshot.dev) - An amazing screenshot tool.
+
 ## Issues and Support
 
 If you encounter any issues with this LWC, please raise an issue on this repository, and I will look into the issue ASAP.
