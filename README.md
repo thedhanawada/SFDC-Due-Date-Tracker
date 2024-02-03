@@ -2,6 +2,8 @@
 
 The Due Date Tracker is a Salesforce Lightning Web Component (LWC) designed to display the status of a due date on a record page. It calculates the difference between a specified start date and end date, and presents whether the due date is upcoming or has been breached.
 
+![screenshot](https://github.com/thedhanawada/SFDC-Due-Date-Tracker/assets/13751641/f65491b7-4e5b-478e-8805-138abf762670)
+
 ## Features
 
 - Dynamically fetches record data using an Apex class.
