@@ -1,6 +1,10 @@
 <template>
     <div class="record-due">
-        <!-- Display the message with dynamic styling -->
-        <p class={messageClass}>{message}</p>
+        <template if:true={record}>
+            <p class={messageClass}>{message}</p>
+        </template>
+        <template if:true={error}>
+            <p class="error">Error retrieving record data: {error}</p>
+        </template>
     </div>
 </template>

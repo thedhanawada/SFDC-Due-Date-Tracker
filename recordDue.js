@@ -1,74 +1,68 @@
-import { LightningElement, api, wire } from 'lwc';
-import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
-
-const FIELDS = ['StartDate', 'EndDate']; // Use the actual API names of your fields
+import { LightningElement, api, wire, track } from 'lwc';
+import getRecordData from '@salesforce/apex/RecordDataService.getRecordData';
 
 export default class RecordDue extends LightningElement {
     @api recordId;
-    @api fieldToCompare; // Should be set to 'StartDate' in the component's config
-    @api comparisonDateField; // Should be set to 'EndDate' in the component's config
+    @api objectName;
+    @api fieldToCompare;
+    @api comparisonDateField;
 
-    // Keep track of the record data internally
-    recordData;
+    @track record;
+    @track error;
 
-    @wire(getRecord, { recordId: '$recordId', fields: ['$fieldToCompare', '$comparisonDateField'] })
+    @wire(getRecordData, {
+        objectName: '$objectName',
+        recordId: '$recordId', 
+        fieldToCompare: '$fieldToCompare', 
+        comparisonDateField: '$comparisonDateField'
+    })
     wiredRecord({ error, data }) {
-        if (error) {
-            console.error('Error fetching record:', error);
-        } else if (data) {
-            this.recordData = data;
-            console.log('Record data:', data);
+        if (data) {
+            this.record = data;
+            console.log('Record data:', JSON.stringify(data, null, 2));
+            this.error = undefined;
+        } else if (error) {
+            this.error = error;
+            console.log('Error:', error);
+            this.record = undefined;
         }
     }
-
-    connectedCallback() {
-        console.log('Component initialized with recordId:', this.recordId);
-        console.log('Field to compare:', this.fieldToCompare);
-        console.log('Comparison date field:', this.comparisonDateField);
-    }
-
-
     get dueDate() {
-        const value = getFieldValue(this.recordData, this.fieldToCompare);
-        console.log('Due Date:', value);
-        return value;
+        return this.record ? this.record.StartDate : null;
     }
     
     get comparisonDate() {
-        const value = getFieldValue(this.recordData, this.comparisonDateField);
-        console.log('Comparison Date:', value);
-        return value;
+        return this.record ? this.record.EndDate : null;
     }
+    
     get isBreached() {
-        const dueDate = this.dueDate;
-        const comparisonDate = this.comparisonDate;
-        return dueDate && comparisonDate && new Date(comparisonDate) > new Date(dueDate);
+        const startDate = new Date(this.dueDate);
+        const endDate = new Date(this.comparisonDate);
+        return startDate && endDate && startDate > endDate;
     }
-
+    
     get daysDifference() {
-        const dueDate = this.dueDate;
-        const comparisonDate = this.comparisonDate;
-        if (!dueDate || !comparisonDate) return 0;
-
-        const dueDateTime = new Date(dueDate).getTime();
-        const comparisonDateTime = new Date(comparisonDate).getTime();
-        const timeDifference = comparisonDateTime - dueDateTime;
-        return Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const startDate = new Date(this.dueDate);
+        const endDate = new Date(this.comparisonDate);
+        if (!startDate || !endDate) return 0;
+        const timeDifference = endDate - startDate;
+        return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
     }
-
+    
     get message() {
         if (!this.dueDate || !this.comparisonDate) {
             return 'Required fields are not set or available.';
         }
-
         if (this.isBreached) {
-            return `Due date was ${Math.abs(this.daysDifference)} days ago.`;
+            return `End date was ${Math.abs(this.daysDifference)} days ago.`;
         } else {
-            return `${-this.daysDifference} days remaining until due date.`;
+            return `${this.daysDifference} days remaining until end date.`;
         }
     }
-
+    
     get messageClass() {
-        return this.isBreached ? 'breached' : 'upcoming';
+        const messageClass = this.isBreached ? 'breached' : 'upcoming';
+        console.log('Message Class:', messageClass);
+        return messageClass;
     }
 }
