@@ -8,6 +8,8 @@ A Salesforce Lightning Web Component (LWC) to display due dates on record pages,
 
 ## Installation
 
+**Caution**: It is recommended to first install this package in a sandbox environment and test it extensively before deploying it to production.
+
 Install this package directly into your Salesforce org using this link: [DueDateTrackerPackage Installation](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tQE0000003Flh).
 
 For manual installation, deploy the LWC and associated Apex class using your preferred Salesforce deployment tool.
@@ -60,7 +62,7 @@ Included files:
 
 ## Testing
 
-Comprehensive test classes ensure reliable operation and deployment readiness. Confirm test coverage before deploying.
+Test classes for the Apex code are included. Confirm test coverage before deploying.
 
 ## Support
 
@@ -68,4 +70,4 @@ For issues, raise a ticket in this repository's [Issues section](https://github.
 
 ## Notes
 
-Verify that the field API names used in the component match those in your Salesforce org configuration.
+MIT Licensed. And please verify that the field API names used in the component match those in your Salesforce org configuration.
