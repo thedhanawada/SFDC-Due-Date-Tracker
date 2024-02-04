@@ -8,7 +8,7 @@ Please include this license notice in your project.
 
 ---
 
-MIT License (MIT)
+MIT License (MIT) for Due Date Tracker by Nirmala Rao Dhanawada (nirmal@dhanawada.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
