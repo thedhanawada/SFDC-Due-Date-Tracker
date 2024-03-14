@@ -70,4 +70,4 @@ For issues, raise a ticket in this repository's [Issues section](https://github.
 
 ## Notes
 
-MIT Licensed. And please verify that the field API names used in the component match those in your Salesforce org configuration.
+MIT Licensed. And please verify that the field API names used in the component match those in your Salesforce org configuration..
